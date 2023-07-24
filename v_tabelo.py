@@ -1,13 +1,36 @@
-import requests
+import csv
 import os
 
-st_strani = 21
-for stran in range(st_strani):
-    url = f"https://www.procyclingstats.com/race/tour-de-france/2022/stage-{stran+1}"
-    odziv = requests.get(url)
-    if odziv.status_code == 200:
-        ime = os.path.join("spletne-strani", "stages", "stran-{}.html".format(stran))
-        with open(ime, "w", encoding='utf-8') as f:
-            f.write(odziv.text)
-    else:
-        print("Prišlo je do napake")
+import zajem
+
+ime = os.path.join("csv_datoteke", "kolesarji.csv")
+with open(ime, "w", encoding='utf-8', newline='') as dat:
+    writer = csv.DictWriter(dat, fieldnames=[
+        "ime",
+        "id", 
+        "država",
+        "tip",
+        "ekipa",
+        "starost",
+        "teža",
+        "višina",
+        "ODR",
+        "GC",
+        "TT",
+        "Sprint", 
+        "Climber"
+    ])
+    writer.writeheader()
+    for kolesar in zajem.kolesarji:
+        writer.writerow(kolesar)
+
+for e in range(zajem.st_strani):
+    ime = os.path.join("csv_datoteke", f"etapa{e}.csv")
+    with open(ime, "w", encoding='utf-8', newline='') as dat:
+        writer = csv.DictWriter(dat, fieldnames=[
+            "id", 
+            "čas"
+        ])
+        writer.writeheader()
+        for čas in zajem.čas_etape[e]:
+            writer.writerow(čas)
