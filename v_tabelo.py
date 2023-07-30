@@ -34,3 +34,18 @@ for e in range(zajem.st_strani):
         writer.writeheader()
         for čas in zajem.čas_etape[e]:
             writer.writerow(čas)
+
+ime = os.path.join("csv_datoteke", "podatki_o_etapah.csv")
+with open(ime, "w", encoding='utf-8', newline='') as dat:
+    writer = csv.DictWriter(dat, fieldnames=[
+        "št",
+        "avg speed",
+        "dolžina",
+        "strmost",
+        "točke terena",
+        "višinci", 
+        "won how"
+    ])
+    writer.writeheader()
+    for etapa in zajem.etape_det:
+        writer.writerow(etapa)

@@ -12,12 +12,16 @@ for stran in range(st_strani):
 
 kolesarji = []
 čas_etape = []
+etape_det= []
 for e in range(st_strani):
     čas_etape.append([])
     ime = os.path.join("spletne-strani", "stages_time", "stran-{}.html".format(e))
     with open(ime, encoding='utf-8') as dat:
         besedilo = dat.read()
         
+        for najdba in re.finditer(r'Avg. speed winner:</div> <div>(?P<avg_speed>.*?) km/h</div>.*?Distance: </div> <div>(?P<dolžina>.*?) km</div>.*?Parcours type: </div> <div><span class="icon profile p(?P<vrsta_terena>\d)">.*?ProfileScore: </div> <div>(?P<točke_terena>.*?)</div>.*?Vert. meters:</div> <div>(?P<višinci>.*?)</div>.*?Won how\: </div> <div>(?P<won_how>.*?)</div>', besedilo, flags=re.DOTALL):
+            etape_det.append({"št": e, "avg speed": najdba["avg_speed"], "dolžina": najdba["dolžina"], "strmost": najdba["vrsta_terena"], "točke terena": najdba["točke_terena"], "višinci": najdba["višinci"], "won how": najdba["won_how"],})
+
         for najdba in re.finditer(r'data-nation="(?P<država>.*?)">.*?"gc hide".*?"bibs hide" >(?P<id>\d+?)</td>.*?"fs10 clr999">(?P<tip>.*?)</span>.*?<a href="rider/(?P<ime>.*?)">.*?"showIfMobile riderteam">(?P<ekipa>.*?)</span>.*?"age hide" >(?P<starost>\d+?)</td>.*?<td class="time ar" >(?P<h>\d*?):(?P<min>\d*?):(?P<s>\d*?)<', besedilo):
             topčas = najdba["h"], najdba["min"], najdba["s"]
             if e == 0:
