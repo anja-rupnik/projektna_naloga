@@ -29,7 +29,7 @@ for e in range(zajem.st_strani):
     with open(ime, "w", encoding='utf-8', newline='') as dat:
         writer = csv.DictWriter(dat, fieldnames=[
             "id", 
-            "čas"
+            f"čas{e+1}"
         ])
         writer.writeheader()
         for čas in zajem.čas_etape[e]:
