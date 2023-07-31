@@ -5,7 +5,7 @@ import funkcije
 
 st_strani = 21
 for stran in range(st_strani):
-    url = f"https://www.procyclingstats.com/race/tour-de-france/2022/stage-{stran+1}"
+    url = f"https://www.procyclingstats.com/race/tour-de-france/2023/stage-{stran+1}"
     ime = os.path.join("spletne-strani", "stages_time", "stran-{}.html".format(stran))
     funkcije.prenesi_stran(url, ime)
 
@@ -54,7 +54,7 @@ for e in range(st_strani):
 
 
 for kolesar in kolesarji:
-    url = f"https://www.procyclingstats.com/rider/{kolesar['ime']}/2022"
+    url = f"https://www.procyclingstats.com/rider/{kolesar['ime']}/2023"
     ime = os.path.join("spletne-strani", "kolesarji", "stran-{}.html".format(kolesar['ime']))
     funkcije.prenesi_stran(url, ime)
 
@@ -68,5 +68,5 @@ for kolesar in kolesarji:
             r'<b>Weight:</b> (?P<teža>.*?) kg .*?<b>Height:</b> (?P<višina>.*?) m<br />.*?<div class="pnt">(?P<ODR>\d*?)</div>.*?<div class="pnt">(?P<GC>\d*?)</div>.*?<div class="pnt">(?P<TT>\d*?)</div>.*?<div class="pnt">(?P<Spr>\d*?)</div>.*?<div class="pnt">(?P<Clm>\d*?)</div>',
             besedilo
         ):
-            kolesar.update({"ime": kolesar["ime"].replace("-", " ").title(), "teža": najdba["teža"]+"kg", "višina": najdba["višina"]+"m", "ODR": najdba["ODR"], "GC": najdba["GC"], "TT": najdba["TT"], "Sprint": najdba["Spr"], "Climber": najdba["Clm"]})
+            kolesar.update({"ime": kolesar["ime"].replace("-", " ").title(), "teža": najdba["teža"], "višina": najdba["višina"], "ODR": najdba["ODR"], "GC": najdba["GC"], "TT": najdba["TT"], "Sprint": najdba["Spr"], "Climber": najdba["Clm"]})
                      
