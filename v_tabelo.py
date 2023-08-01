@@ -13,5 +13,5 @@ for e in range(zajem.st_strani):
     funkcije.v_csv(ime, kategorije, zajem.čas_etape[e])
 
 ime = os.path.join("csv_datoteke", "podatki_o_etapah.csv")
-kategorije = ["št", "avg speed", "dolžina", "strmost", "točke terena", "skupni vzpon", "won how"]
+kategorije = ["št", "avg speed", "dolžina", "težavnost", "točke terena", "skupni vzpon", "won how"]
 funkcije.v_csv(ime, kategorije, zajem.etape_det)
