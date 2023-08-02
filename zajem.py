@@ -19,8 +19,8 @@ for e in range(st_strani):
     with open(ime, encoding='utf-8') as dat:
         besedilo = dat.read()
         
-        for najdba in re.finditer(r'Avg. speed winner:</div> <div>(?P<avg_speed>.*?) km/h</div>.*?Distance: </div> <div>(?P<dolžina>.*?) km</div>.*?Parcours type: </div> <div><span class="icon profile p(?P<vrsta_terena>\d)">.*?ProfileScore: </div> <div>(?P<točke_terena>.*?)</div>.*?Vert. meters:</div> <div>(?P<višinci>.*?)</div>.*?Won how\: </div> <div>(?P<won_how>.*?)</div>', besedilo, flags=re.DOTALL):
-            etape_det.append({"št": e+1, "avg speed": najdba["avg_speed"], "dolžina": najdba["dolžina"], "težavnost": najdba["vrsta_terena"], "točke terena": najdba["točke_terena"], "skupni vzpon": najdba["višinci"], "won how": najdba["won_how"],})
+        for najdba in re.finditer(r'Avg. speed winner:</div> <div>(?P<avg_speed>.*?) km/h</div>.*?Distance: </div> <div>(?P<dolžina>.*?) km</div>.*?Parcours type: </div> <div><span class="icon profile p(?P<vrsta_terena>\d)">.*?ProfileScore: </div> <div>(?P<točke_terena>.*?)</div>.*?Vert. meters:</div> <div>(?P<višinci>.*?)</div>', besedilo, flags=re.DOTALL):
+            etape_det.append({"št": e+1, "avg speed": najdba["avg_speed"], "dolžina": najdba["dolžina"], "težavnost": najdba["vrsta_terena"], "točke terena": najdba["točke_terena"], "skupni vzpon": najdba["višinci"]})
 
         for najdba in re.finditer(r'data-nation="(?P<država>.*?)">.*?"gc hide".*?"bibs hide" >(?P<id>\d+?)</td>.*?"fs10 clr999">(?P<tip>.*?)</span>.*?<a href="rider/(?P<ime>.*?)">.*?"showIfMobile riderteam">(?P<ekipa>.*?)</span>.*?"age hide" >(?P<starost>\d+?)</td>.*?<td class="time ar" >(?P<h>\d*?):(?P<min>\d*?):(?P<s>\d*?)<', besedilo):
             topčas = najdba["h"], najdba["min"], najdba["s"]
@@ -65,7 +65,7 @@ for kolesar in kolesarji:
         besedilo = dat.read()
         
         for najdba in re.finditer(
-            r'<b>Weight:</b> (?P<teža>.*?) kg .*?<b>Height:</b> (?P<višina>.*?) m<br />.*?<div class="pnt">(?P<ODR>\d*?)</div>.*?<div class="pnt">(?P<GC>\d*?)</div>.*?<div class="pnt">(?P<TT>\d*?)</div>.*?<div class="pnt">(?P<Spr>\d*?)</div>.*?<div class="pnt">(?P<Clm>\d*?)</div>',
+            r'(Weight:</b> (?P<teža>.*?) kg .*?)?<b>Height:</b> (?P<višina>.*?) m<br />.*?<div class="pnt">(?P<ODR>\d*?)</div>.*?<div class="pnt">(?P<GC>\d*?)</div>.*?<div class="pnt">(?P<TT>\d*?)</div>.*?<div class="pnt">(?P<Spr>\d*?)</div>.*?<div class="pnt">(?P<Clm>\d*?)</div>',
             besedilo
         ):
             kolesar.update({"ime": kolesar["ime"].replace("-", " ").title(), "teža": najdba["teža"], "višina": najdba["višina"], "ODR": najdba["ODR"], "GC": najdba["GC"], "TT": najdba["TT"], "Sprint": najdba["Spr"], "Climber": najdba["Clm"]})
