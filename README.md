@@ -3,7 +3,7 @@ V okviru projektne naloge za predmet Uvod v programiranje sem analizirala rezult
 
 Podatke sem zajemala iz strani [Pro Cycling Stats](https://www.procyclingstats.com/race/tour-de-france/2023) in jih uredila z uporabo [zajem.py](zajem.py) ter shranila v .csv datoteke s pomočjo [v_tabelo.py](v_tabelo.py).
 
-V mapi *spletme-strani* so shranjene spletne strani iz katerih so bili zajeti podatki, ločeni v dve podmapi glede na tip spletne strani. 
+V mapi *spletne-strani* so shranjene spletne strani iz katerih so bili zajeti podatki, ločeni v dve podmapi glede na tip spletne strani. 
 
 V mapi *csv_datoteke* so shranjene sledeče datoteke:
 - 21 datotek *etapa(št).csv* za št med 0 in 20, ki vsebujejo id in čas posameznega kolesarja na določeni etapi
