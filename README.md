@@ -9,3 +9,5 @@ V mapi *csv_datoteke* so shranjene sledeče datoteke:
 - 21 datotek *etapa(št).csv* za št med 0 in 20, ki vsebujejo id in čas posameznega kolesarja na določeni etapi
 - *kolesarji.csv*, ki vsebuje za vsakega kolesarja id, ime in priimek, državo, tip kolesarja, ekipo, starost, težo, višino in točke v vsaki od kategorij (ODR, GC, TT, Sprint, Climber)
 - *podatki_o_etapah.csv*, ki vsebuje za vsako etapo številko etape, povprečno hitrost zamgovalca, težavnost, točke terena in skupni vzpon
+
+Rezultati analize podatkov so predstavljeni v datoteki [analizirajmo.ipynb](analizirajmo.ipynb).
